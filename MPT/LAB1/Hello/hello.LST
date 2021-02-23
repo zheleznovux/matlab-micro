@@ -1,0 +1,58 @@
+C51 COMPILER V7.20   HELLO                                                                 02/11/2021 13:47:16 PAGE 1   
+
+
+C51 COMPILER V7.20, COMPILATION OF MODULE HELLO
+OBJECT MODULE PLACED IN hello.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE hello.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <ADuC812.h>
+   2          #include <stdio.h>          
+   3          
+   4          // Подпрограмма работы с портами ПЛИС
+   5          void WriteMax(unsigned char xdata *regnum, unsigned char val)
+   6          {
+   7   1      #define MAXBASE 0x8;
+   8   1      unsigned char oldDPP=DPP;
+   9   1      
+  10   1      DPP=MAXBASE;
+  11   1      *regnum=val;
+  12   1      DPP=oldDPP;
+  13   1      }
+  14          
+  15          void main(void)
+  16          {
+  17   1      unsigned char svet = 1;
+  18   1      unsigned int pause;
+  19   1      // ------- Инициализация UART -----------
+  20   1      TH1 = 0xFD; // Скорость 9600 бит/с
+  21   1      TMOD = 0x20;// Таймер 1 в режиме autoreload
+  22   1      TCON = 0x40;// Запуск таймера 1
+  23   1      SCON = 0x50;// 8 bit UART, разрешение приема
+  24   1      PCON &= 0x7F;// Отключение удвоения скорости
+  25   1      TI = 1; // Требуется для работы с
+  26   1      RI = 1;// stdio.h
+  27   1      EA = 0;// Запрещение прерываний
+  28   1      do{
+  29   2              printf ("Hello World\n");// вывод на терминал "Hello World"
+  30   2              svet = svet<<1;// сдвиг влево
+  31   2              if(svet==0) svet=1;
+  32   2              WriteMax(0x7,svet);//вывод на светодиды
+  33   2              for(pause=0;pause<=32000;pause++);// задержка
+  34   2      } while(1);
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     93    ----
+   CONSTANT SIZE    =     13    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
