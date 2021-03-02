@@ -1,0 +1,33 @@
+A51 MACRO ASSEMBLER  PRIM1                                                                02/14/2020 12:59:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.10
+OBJECT MODULE PLACED IN prim1.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE prim1.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 022100            1     START: JMP LOAD ;переход к программе
+2100                   2     ORG 2100H;директива размещения программы с адреса 2100
+2100 7841              3     LOAD: MOV R0,#41H ;загрузка в R0 указателя данных
+2102 761C              4     MOV @R0,#1CH ;запись в память числа 1CH
+2104 08                5     INC R0 ;инкремент указателя
+2105 763F              6     MOV @R0,#3FH ;запись в память числа 3FH
+2107 80F7              7     JMP LOAD ;зацикливание программы
+                       8     END ;директива окончания трансляции
+A51 MACRO ASSEMBLER  PRIM1                                                                02/14/2020 12:59:29 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+LOAD . . . . . . .  C ADDR   2100H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

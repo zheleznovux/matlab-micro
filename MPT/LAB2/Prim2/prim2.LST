@@ -1,0 +1,53 @@
+A51 MACRO ASSEMBLER  PRIM2                                                                02/28/2021 19:15:39 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN prim2.OBJ
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE prim2.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     START: 
+0000 022100            2     JMP LOAD ;переход к программе
+2100                   3     ORG 2100H;директива размещения программы с адреса 2100
+2100                   4     LOAD: 
+2100 7A04              5     MOV R2, #4
+2102 7842              6     MOV R0,#0X42 ;загрузка в R0 указателя данных
+2104 76FF              7     MOV @R0,#0XFF ;запись в память числа 
+2106 08                8     INC R0 ;инкремент указателя
+2107 7621              9     MOV @R0,#0X21 ;запись в память числа
+2109 08               10     INC R0 ;инкремент указателя
+210A 76FF             11     MOV @R0,#0XFF ;запись в память числа
+210C 7948             12     MOV R1, #0X48
+210E 77FA             13     MOV @R1, #0XFA
+2110 09               14     INC R1 ;инкремент указателя
+2111 7705             15     MOV @R1,#0X05 ;запись в память числа 
+2113 09               16     INC R1 ;инкремент указателя
+2114 77FA             17     MOV @R1,#0XFA ;запись в память числа 
+2116 C3               18     CLR C ;сброс переноса
+2117                  19     LOOP:
+2117 E6               20     MOV A, @R0 ;загрузка в A текущего байта первого
+                      21     ;слагаемого
+2118 37               22     ADDC A, @R1 ;сложение байтов с учетом переноса
+2119 F6               23     MOV @R0, A ;размещение байта результата
+211A 18               24     DEC R0 ;продвижение указателей
+211B 19               25     DEC R1
+211C DAF9             26     DJNZ R2, LOOP ;цикл, если не все байты просуммированы
+                      27     END
+A51 MACRO ASSEMBLER  PRIM2                                                                02/28/2021 19:15:39 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+LOAD . . . . . . .  C ADDR   2100H   A   
+LOOP . . . . . . .  C ADDR   2117H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

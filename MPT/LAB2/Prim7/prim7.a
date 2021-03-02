@@ -1,0 +1,210 @@
+#include <ADuC812.inc>
+	CSEG AT 0h
+	LJMP main
+	CSEG AT 0Bh
+	LJMP clock
+	
+clock:
+	CLR TF0
+	MOV TH0,#HIGH(53035)
+	MOV TL0,#LOW(53035)
+	INC R2
+	JB P0.0,Hz4
+	CJNE R2,#10,stop
+	JMP tut
+	Hz4:
+	JB P0.1,Hz2
+	CJNE R2,#20,stop
+	JMP tut
+	Hz2:
+	CJNE R2,#40,stop
+	tut:
+	MOV A,P3
+	CJNE R4,#00000000b,stop
+	JMP napravlenie
+	vlevo:
+	RL A
+	
+	JB P0.2,L_plus_led
+	CJNE R7,#0,L_plus_led_1
+	CJNE R6,#0,L_non_plus_led
+	L_plus_led_1:
+	ORL A,P3
+	MOV R6,#1
+	MOV R7,#0
+	JMP L_non_plus_led
+	L_plus_led:
+	CJNE R6,#1,L_non_plus_led
+	ANL A,P3
+	MOV R6,#0
+	L_non_plus_led:
+
+	MOV R1,A
+	MOV P3,A
+	MOV R2,#0
+	RETI
+	napravlenie:
+	CJNE R3,#11111111b,vlevo
+	RR A
+	
+	JB P0.2,R_plus_led
+	CJNE R7,#0,R_plus_led_1
+	CJNE R6,#0,R_non_plus_led
+	R_plus_led_1:
+	ORL A,P3
+	MOV R6,#1
+	MOV R7,#0
+	JMP R_non_plus_led
+	R_plus_led:
+	CJNE R6,#1,R_non_plus_led
+	ANL A,P3
+	MOV R6,#0
+	R_non_plus_led:
+	
+	MOV R1,A
+	MOV P3,A
+	MOV R2,#0
+	RETI
+stop:
+	MOV R5,#0
+	RETI
+;...........................................................................
+main:
+	MOV R1,#0
+	MOV R2,#0
+	MOV R3,#0
+	MOV R4,#0
+	MOV R6,#0
+	MOV R7,#0
+loop:
+	MOV P3,R1
+	MOV TH0,#HIGH(53035) 
+	MOV TL0,#LOW(53035) 
+	MOV TMOD,#1h
+	 
+	SETB ET0
+	SETB EA
+	SETB TCON.4
+;...........................................................................	
+keyboard:
+	MOV A,#11111110b
+	MOV P2,A
+	MOV A,P2
+	CJNE A,#11111110b,piu1
+	
+	MOV A,#11111101b
+	MOV P2,A
+	MOV A,P2
+	CJNE A,#11111101b,piu4
+	
+	MOV A,#11111011b
+	MOV P2,A
+	MOV A,P2
+	CJNE A,#11111011b,piu7
+	
+	MOV A,#11110111b
+	MOV P2,A
+	MOV A,P2
+	CJNE A,#11110111b,piu0
+	
+	JMP keyboard
+	
+piu1:
+	MOV R7,#1
+	CJNE A,#11101110b,piu2
+	CJNE R5,#0,piu2
+	INC R5
+	MOV R1,#00000001b
+	JMP loop
+piu2:
+	CJNE A,#11011110b,piu3
+	CJNE R5,#0,piu3
+	INC R5
+	MOV R1,#00000011b
+	JMP loop
+	
+piu3:
+	CJNE A,#10111110b,loop
+	CJNE R5,#0,loop
+	INC R5
+	MOV R1,#00000111b
+	JMP loop
+	
+piu4:
+	MOV R7,#1
+	CJNE A,#11101101b,piu5
+	CJNE R5,#0,piu5
+	INC R5
+	MOV R1,#00001111b	
+	JMP loop
+	
+piu5:
+	CJNE A,#11011101b,piu6
+	CJNE R5,#0,piu6
+	INC R5
+	MOV R1,#00011111b
+	JMP loop
+
+piu6:
+	CJNE A,#10111101b,piu6_end
+	CJNE R5,#0,piu6_end
+	INC R5
+	MOV R1,#00111111b
+	piu6_end:
+	JMP loop
+	
+piu7:
+	MOV R7,#1
+	CJNE A,#11101011b,piu8
+	CJNE R5,#0,piu8
+	INC R5
+	MOV R1,#01111111b
+	JMP loop
+
+piu8:
+	CJNE A,#11011011b,piu9
+	CJNE R5,#0,piu9
+	INC R5
+	MOV R1,#11111111b
+	JMP loop
+	
+piu9:
+	CJNE A,#10111011b,piu9_end
+	CJNE R5,#0,piu9_end
+	INC R5
+	MOV R1,#11111111b
+	piu9_end:
+	JMP loop
+	
+piu0:
+	CJNE A,#11010111b,zvezda
+	CJNE R5,#0,zvezda
+	INC R5
+	MOV R1,#0b
+	JMP loop
+
+zvezda:
+	CJNE A,#11100111b,reshotka
+	CJNE R5,#0,reshotka
+	INC R5
+	MOV A,R3
+	CPL A
+	MOV R3,A
+	CLR A
+	JMP loop
+	
+reshotka:
+	CJNE A,#10110111b,reshotka_end
+	CJNE R5,#0,reshotka_end
+	INC R5
+	MOV A,R4
+	CPL A
+	MOV R4,A
+	CLR A
+	reshotka_end:
+	JMP loop
+	
+	SJMP $
+		
+END
+;...........................................................................

@@ -1,0 +1,43 @@
+BL51 BANKED LINKER/LOCATER V5.11                                                        02/14/2020  12:59:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V5.11, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE prim1.obj TO prim1 RAMSIZE (256) CODE (0X2100-0XFFFF) XDATA (0X0000-0X1FFE)
+
+
+INPUT MODULES INCLUDED:
+  prim1.obj (PRIM1)
+
+
+LINK MAP OF MODULE:  prim1 (PRIM1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     2109H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  prim1 (PRIM1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PRIM1
+  C:2100H         SYMBOL        LOAD
+  C:0000H         SYMBOL        START
+  C:0000H         LINE#         1
+  C:2100H         LINE#         3
+  C:2102H         LINE#         4
+  C:2104H         LINE#         5
+  C:2105H         LINE#         6
+  C:2107H         LINE#         7
+  -------         ENDMOD        PRIM1
+
+Program Size: data=8.0 xdata=0 code=8457
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,44 @@
+A51 MACRO ASSEMBLER  PRIM6                                                                02/28/2020 15:46:56 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.10
+OBJECT MODULE PLACED IN prim6.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE prim6.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 7902              1     START: MOV R1,#02H ;загрузка регистров
+0002 7430              2     MOV A,#30H
+0004 7A00              3     MOV R2,#00H
+0006 12000B            4     LCALL SUB ;переход на подпрограмму
+0009 80F5              5     SJMP START
+                       6     
+000B C0D0              7     SUB: PUSH PSW ;сохранение в стеке PSW
+000D C0E0              8     PUSH ACC ;сохранение аккумулятора
+000F C0F0              9     PUSH B ;сохранение расширителя аккумулятора B
+0011 29               10     ADD A,R1 ;собственно обработка данных
+0012 FA               11     MOV R2,A
+0013 D0F0             12     POP B ;восстановление B
+0015 D0E0             13     POP ACC ;восстановление аккумулятора
+0017 D0D0             14     POP PSW ;восстановление PSW
+0019 22               15     RET ;возврат
+                      16     END
+A51 MACRO ASSEMBLER  PRIM6                                                                02/28/2020 15:46:56 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+START. . . . . . .  C ADDR   0000H   A   
+SUB. . . . . . . .  C ADDR   000BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

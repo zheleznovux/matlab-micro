@@ -1,0 +1,36 @@
+A51 MACRO ASSEMBLER  PRIM5                                                                02/28/2020 15:25:43 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.10
+OBJECT MODULE PLACED IN prim5.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE prim5.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 022100            1      START: JMP LOAD ;переход к программе
+2100                   2     ORG 2100H;директива размещения программы с адреса 2100
+2100                   3     LOAD: 
+2100 7DB8              4     MOV R5,#10111000b ;запись в память числа 
+2102 7400              5     MOV A,#0 ;сброс аккумулятора
+2104 2D                6     ADD A,R5 ;загрузка множимого
+2105 4401              7     ORL A,#00000001b
+2107 54EF              8     ANL A,#11101111b
+2109 6440              9     XRL A,#01000000b
+                      10     
+*** WARNING #A41 IN 10 (prim5.a, LINE 10): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  PRIM5                                                                02/28/2020 15:25:43 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+LOAD . . . . . . .  C ADDR   2100H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)

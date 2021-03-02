@@ -1,0 +1,12 @@
+C51 COMPILER V7.20   PRIM                                                                  02/14/2020 12:59:33 PAGE 1   
+
+
+C51 COMPILER V7.20, COMPILATION OF MODULE PRIM
+OBJECT MODULE PLACED IN prim.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE prim.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+*** ERROR C318 OF prim.c: can't open file 'prim.c'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

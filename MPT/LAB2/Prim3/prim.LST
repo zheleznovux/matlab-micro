@@ -1,0 +1,81 @@
+A51 MACRO ASSEMBLER  PRIM                                                                 03/01/2021 14:58:52 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN prim.OBJ
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE prim.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 022100            1     START:  JMP LOAD ;переход к программе
+2100                   2                     ORG 2100H;директива размещени€ программы с адреса 2100
+2100 7841              3     LOAD:   MOV R0,#0X41 ;загрузка в R0 указател€ данных
+2102 76FF              4                     MOV @R0,#0FFH ;запись в пам€ть числа 
+2104 08                5                     INC R0 ;инкремент указател€
+2105 7621              6                     MOV @R0,#021H ;запись в пам€ть числа
+2107 08                7                     INC R0 ;инкремент указател€
+2108 76FF              8                     MOV @R0,#0FFH ;запись в пам€ть числа
+                       9                     
+210A 7A00             10                     MOV R2, #0
+                      11                     
+                      12                     
+210C 7904             13                     MOV R1, #4
+210E C3               14                     CLR C ;сброс переноса
+210F 7400             15                     MOV A,#0 ;сброс аккумул€тора
+                      16             
+2111 7400             17                     MOV A, #0 ;????? ????????????
+2113                  18                     LOOP: 
+2113 26               19                     ADD A,@R0 ;???????? ?????????
+2114 75F005           20                     MOV B,#5 ;???????? ?????????
+2117 A4               21                     MUL AB 
+2118 3A               22                     ADDC A,R2
+2119 F6               23                     MOV @R0,A ;?????? ???????? ????? ??????????
+                      24                     
+211A 18               25                     DEC R0 ;?????????? ??????
+211B E5F0             26                     MOV A,B ;????????? ???????? ????? ??????????
+                      27                     ;???????????? ? ???????????
+211D FA               28                     MOV R2,A ;??????????????? ????????????
+                      29                     ;?????????? ????? ????????????
+211E D9F3             30                     DJNZ R1,LOOP    
+                      31     ;LOOP:  ADD A, @R0 
+                      32     ;               MOV B, #0X5     
+                      33     ;               MUL AB 
+                      34     ;               MOV @R1,A 
+                      35     ;               DEC R1
+                      36     ;               MOV A,B 
+                      37     ;               XCH A,@R1
+                      38     ;               DEC R1
+                      39     ;               DEC R0
+                      40     ;               DJNZ R2,LOOP 
+                      41     ;               
+                      42     ;               MOV R1, #0X55
+                      43     ;               MOV R0, #0X54
+                      44     ;               MOV A, @R1
+                      45     ;               ADDC A, @R0
+                      46     ;               MOV @R1, A
+                      47     ;               
+                      48     ;               DEC R1
+                      49     ;               MOV A, @R1
+                      50     ;               DEC R1
+                      51     ;               ADDC A, @R1
+                      52     ;               MOV @R1, A
+                      53     
+                      54                     END
+A51 MACRO ASSEMBLER  PRIM                                                                 03/01/2021 14:58:52 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+LOAD . . . . . . .  C ADDR   2100H   A   
+LOOP . . . . . . .  C ADDR   2113H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

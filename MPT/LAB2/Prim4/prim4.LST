@@ -1,0 +1,46 @@
+A51 MACRO ASSEMBLER  PRIM4                                                                02/28/2020 14:52:17 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.10
+OBJECT MODULE PLACED IN prim4.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE prim4.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 022100            1     START: JMP LOAD ;переход к программе
+2100                   2     ORG 2100H;директива размещения программы с адреса 2100
+2100                   3     LOAD: 
+2100 7840              4     MOV R0,#0X40 ;загрузка в R0 указателя данных
+2102 767F              5     MOV @R0,#1111111b ;запись в память числа 
+2104 7400              6     MOV A,#0 ;сброс аккумулятора
+2106 7950              7     MOV R1,#0X50 ;загрузка в R0 указателя данных
+2108 26                8     ADD A,@R0 ;загрузка множимого
+2109 75F064            9     MOV B,#100 ;загрузка 100 для вычисления количества сотен
+210C 84               10     DIV AB ;аккумулятор содержит число сотен (старшую цифру)
+210D F7               11     MOV @R1,A ;пересылка в R1 старшей цифры
+210E C5F0             12     XCH A,B ;пересылка остатка исходного числа в аккумулятор
+2110 75F00A           13     MOV B,#10 ;загрузка 10 для вычисления количества десятков
+2113 84               14     DIV AB ;А содержит число десятков, В - число единиц
+2114 C4               15     SWAP A ;размещение числа десятков в старшей тетраде A
+2115 25F0             16     ADD A,B ;подсуммирование остатка (числа единиц),
+                      17     ;теперь аккумулятор содержит две младшие цифры
+2117 09               18     INC R1
+2118 F7               19     MOV @R1,A
+*** WARNING #A41 IN 19 (prim4.a, LINE 19): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  PRIM4                                                                02/28/2020 14:52:17 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+LOAD . . . . . . .  C ADDR   2100H   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)
