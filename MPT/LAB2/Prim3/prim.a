@@ -11,8 +11,8 @@ LOAD:	MOV R0,#0X41 ;загрузка в R0 указателя данных
 			
 		CLR C 
 		MOV A,#0 
-		
-LOOP:	MOV A,@R0 
+LOOP: 
+		MOV A,@R0 
 		MOV B,#5 
 		MUL AB 
 		
@@ -24,5 +24,4 @@ LOOP:	MOV A,@R0
 		DEC R0
 		
 		DJNZ R2,LOOP 	
-		
 		END

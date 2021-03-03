@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/03/2021  00:39:26  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/03/2021  00:48:41  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -42,24 +42,24 @@ SYMBOL TABLE OF MODULE:  prim (PRIM)
   C:2108H         LINE#         8
   C:210AH         LINE#         9
   C:210CH         LINE#         10
-  C:210EH         LINE#         11
-  C:210FH         LINE#         12
+  C:210EH         LINE#         12
+  C:210FH         LINE#         13
   C:2111H         LINE#         15
   C:2112H         LINE#         16
   C:2115H         LINE#         17
-  C:2116H         LINE#         18
-  C:2117H         LINE#         19
-  C:2118H         LINE#         20
-  C:2119H         LINE#         21
-  C:211BH         LINE#         22
-  C:211CH         LINE#         23
+  C:2116H         LINE#         19
+  C:2117H         LINE#         20
+  C:2118H         LINE#         21
+  C:2119H         LINE#         23
+  C:211BH         LINE#         24
+  C:211CH         LINE#         26
   -------         ENDMOD        PRIM
 
 ******************************************************************************
 * RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0021H BYTE ( 1%) *
 ******************************************************************************
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/03/2021  00:39:26  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/03/2021  00:48:41  PAGE 2
 
 
 Program Size: data=8.0 xdata=0 code=8478

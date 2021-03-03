@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PRIM                                                                 03/03/2021 00:39:26 PAGE     1
+A51 MACRO ASSEMBLER  PRIM                                                                 03/03/2021 00:48:41 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.7.0
@@ -17,21 +17,26 @@ LOC  OBJ            LINE     SOURCE
 2108 7601              8                     MOV @R0,#1H ;запись в память числа
 210A 7955              9                     MOV R1, #0X55
 210C 7A03             10                     MOV R2, #3
-210E C3               11                     CLR C ;сброс переноса
-210F 7400             12                     MOV A,#0 ;сброс аккумулятора
-                      13     
-2111                  14                     LOOP: 
-2111 E6               15                     MOV A,@R0 
-2112 75F005           16                     MOV B,#5 
+                      11                             
+210E C3               12                     CLR C 
+210F 7400             13                     MOV A,#0 
+                      14                     
+2111 E6               15     LOOP:   MOV A,@R0 
+2112 75F0B3           16                     MOV B,#5555 
+*** ________________________________________________^
+*** WARNING #A52 IN 16 (prim.a, LINE 16): VALUE HAS BEEN TRUNCATED TO 8 BITS
 2115 A4               17                     MUL AB 
-2116 37               18                     ADDC A, @R1
-2117 F7               19                     MOV @R1, A
-2118 19               20                     DEC R1
-2119 A7F0             21                     MOV @R1, B
-211B 18               22                     DEC R0
-211C DAF3             23                     DJNZ R2,LOOP    
-                      24                     END
-A51 MACRO ASSEMBLER  PRIM                                                                 03/03/2021 00:39:26 PAGE     2
+                      18                     
+2116 37               19                     ADDC A, @R1
+2117 F7               20                     MOV @R1, A
+2118 19               21                     DEC R1
+                      22                     
+2119 A7F0             23                     MOV @R1, B
+211B 18               24                     DEC R0
+                      25                     
+211C DAF3             26                     DJNZ R2,LOOP    
+                      27                     END
+A51 MACRO ASSEMBLER  PRIM                                                                 03/03/2021 00:48:41 PAGE     2
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -48,4 +53,4 @@ START. . . . . . .  C ADDR   0000H   A
 REGISTER BANK(S) USED: 0 
 
 
-ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)

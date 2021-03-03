@@ -207,27 +207,27 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\prim.a</PathWithFileName>
-      <FilenameWithoutPath>prim.a</FilenameWithoutPath>
+      <PathWithFileName>.\prim4.a</PathWithFileName>
+      <FilenameWithoutPath>prim4.a</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
       <WindowPosition>
         <length>44</length>
-        <flags>0</flags>
-        <showCmd>1</showCmd>
+        <flags>2</flags>
+        <showCmd>3</showCmd>
         <MinPosition>
           <xPos>-1</xPos>
           <yPos>-1</yPos>
         </MinPosition>
         <MaxPosition>
-          <xPos>-1</xPos>
-          <yPos>-1</yPos>
+          <xPos>-8</xPos>
+          <yPos>-30</yPos>
         </MaxPosition>
         <NormalPosition>
-          <Top>0</Top>
-          <Left>-2</Left>
-          <Right>866</Right>
-          <Bottom>305</Bottom>
+          <Top>7</Top>
+          <Left>4</Left>
+          <Right>770</Right>
+          <Bottom>212</Bottom>
         </NormalPosition>
       </WindowPosition>
     </File>
