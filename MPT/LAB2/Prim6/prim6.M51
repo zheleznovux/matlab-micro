@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        03/27/2020  15:48:34  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/05/2021  15:04:48  PAGE 1
 
 
-BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-D:\PROGRAM FILES\KEIL_V5\C51\BIN\BL51.EXE prim6.obj TO prim6 RAMSIZE (256) CODE (0X2100-0XFFFF) XDATA (0X0000-0X1FFE)
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE prim6.obj TO prim6 RAMSIZE (256) CODE (0X2100-0XFFFF) XDATA (0X0000-0X1FFE)
 
 
 INPUT MODULES INCLUDED:
@@ -34,7 +34,7 @@ SYMBOL TABLE OF MODULE:  prim6 (PRIM6)
   D:00D0H         SYMBOL        PSW
   C:0000H         SYMBOL        START
   C:000BH         SYMBOL        SUB
-  C:0000H         LINE#         1
+  C:0000H         LINE#         65533
   C:0002H         LINE#         2
   C:0004H         LINE#         3
   C:0006H         LINE#         4

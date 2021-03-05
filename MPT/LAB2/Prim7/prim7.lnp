@@ -1,5 +1,0 @@
-"prim7.obj" 
-TO "prim7" 
-RAMSIZE(256) 
-CODE( 0X2100-0XFFFF )
-XDATA( 0X0000-0X1FFE )

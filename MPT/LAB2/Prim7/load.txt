@@ -1,6 +1,0 @@
-0x2100 0x0 addhexstart prim7.hex
-9600 openchannel com1
-0 term
-loadhex prim7.hex
-0 term
-bye
