@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PRIM5                                                                03/03/2021 20:17:07 PAGE     1
+A51 MACRO ASSEMBLER  PRIM5                                                                03/28/2021 22:25:15 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.7.0
@@ -7,19 +7,106 @@ ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE prim5.a SET(SMALL) DEBUG EP
 
 LOC  OBJ            LINE     SOURCE
 
-0000 022100            1     START:  JMP LOAD ;переход к программе
-2100                   2                     ORG 2100H;директива размещения программы с адреса 2100
-                       3             
-2100 7D08              4     LOAD:   MOV R5,#00001000b ;запись в память числа 
-2102 7400              5                     MOV A,#0 ;сброс аккумулятора
-2104 2D                6                     ADD A,R5 ;загрузка множимого
-                       7                     
-2105 4401              8                     ORL A,#00000001b
-2107 5401              9                     ANL A,#00000001b
-2109 6420             10                     XRL A,#00100000b
-                      11     
-                      12                     END
-A51 MACRO ASSEMBLER  PRIM5                                                                03/03/2021 20:17:07 PAGE     2
+                       1     ;#include <ADuC812.inc> ;<----------------------------
+                       2     
+  0007                 3     SV EQU 7h
+                       4             
+                       5     PROG_T0 SEGMENT CODE
+                       6     PROG_T1 SEGMENT CODE    
+                       7     VAR1    SEGMENT DATA
+                       8     BITVAR  SEGMENT BIT     
+                       9     
+----                  10                     RSEG VAR1
+0000                  11                     SVET: DS 1
+                      12     
+----                  13                     RSEG BITVAR
+0000                  14                     FLAG: DBIT 1    
+0001                  15                     FLAG1: DBIT 1
+                      16             
+----                  17                     CSEG AT 0h
+0000 022100           18                     jmp START
+                      19                     
+----                  20                     CSEG AT 0Bh
+000B 020000   F       21                     jmp Timer0
+----                  22                     CSEG AT 200Bh
+200B 020000   F       23                     jmp Timer0
+                      24                     
+----                  25                     CSEG AT 23h
+0023 020000   F       26                     jmp Timer1
+                      27     
+                      28     ;nastroika timera
+                      29     setTimer macro V_TMOD,V_TCON
+                      30                     mov TMOD,V_TMOD
+                      31                     mov TCON,V_TCON
+                      32                     endm    
+                      33                     
+                      34     ;podprogramma obrabotchik prerivaniya ot timera0
+----                  35                     RSEG PROG_T0
+0000 C0D0             36     Timer0: push PSW
+0002 C0E0             37                     push ACC
+0004 E500     F       38                     mov A,SVET
+0006 03               39                     RR A
+                      40                     ;movx @R1,A
+0007 F500     F       41                     mov SVET,A
+0009 D0E0             42                     pop ACC
+000B D0D0             43                     pop PSW
+000D 32               44                     RETI
+                      45                     
+----                  46                     RSEG PROG_T1
+0000 C0D0             47     Timer1: push PSW ;2
+0002 C0E0             48                     push ACC ;2
+0004 300007   F       49                     jnb flag, vikl ;2
+0007 E500     F       50                     mov A,SVET ;1
+0009 F3               51                     movx @R1,A ;2
+000A C200     F       52                     clr flag ;1
+000C 8005             53                     jmp exit ;2
+000E                  54     vikl:   
+000E 7400             55                     mov A,#0h ;1
+0010 F3               56                     movx @R1,A ;2
+0011 D200     F       57                     setb flag ;1
+0013 D0E0             58     exit:   pop ACC ;2
+A51 MACRO ASSEMBLER  PRIM5                                                                03/28/2021 22:25:15 PAGE     2
+
+0015 D0D0             59                     pop PSW;2
+0017 32               60                     RETI ;2
+                      61                     
+----                  62                     CSEG AT 2100h
+2100                  63     START:  setTimer #00100001b, #01000010h
+2106 D2AF             66                     SETB EA
+2108 D2A9             67                     SETB ET0
+210A D2AB             68                     SETB ET1
+210C D2B9             69                     SETB IP.1;              SETB PT0
+                      70                     
+                      71                     ;MOV DPP,#8h
+210E 7907             72                     MOV R1, #SV
+2110 7800             73                     MOV R0, #0h
+2112 7AA4             74                     MOV R2, #164
+2114 750001   F       75                     MOV SVET, #00000001b
+                      76     
+2117 74FB             77     WAIT:   mov A, #11111011b
+2119 F2               78                     movx @R0, A
+211A E2               79                     movx A, @R0
+211B B47BF9           80                     cjne A, #01111011b, wait
+                      81                     
+211E EA               82                     MOV A, R2
+211F 3412             83                     ADDC A, #18
+2121 9200     F       84                     mov FLAG1, C
+2123 200005   F       85                     JB FLAG1, cycle2
+2126 F58B             86                     MOV TL1, A
+2128 FA               87                     MOV R2, A
+2129 8005             88                     JMP CYCLE
+212B 7AA4             89     CYCLE2: MOV R2, #164
+212D F58B             90                     MOV TL1, A
+212F C3               91                     CLR C
+                      92     
+2130 74FB             93     CYCLE:  mov A, #11111011b
+2132 F2               94                     movx @R0, A
+2133 E2               95                     movx A, @R0
+2134 B47BF9           96                     cjne A, #01111011b, cycle
+2137 80DE             97                     jmp wait
+                      98     
+                      99                     END
+A51 MACRO ASSEMBLER  PRIM5                                                                03/28/2021 22:25:15 PAGE     3
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -27,8 +114,31 @@ SYMBOL TABLE LISTING
 
 N A M E             T Y P E  V A L U E   ATTRIBUTES
 
-LOAD . . . . . . .  C ADDR   2100H   A   
-START. . . . . . .  C ADDR   0000H   A   
+ACC. . . . . . . .  D ADDR   00E0H   A   
+BITVAR . . . . . .  B SEG    0002H       REL=UNIT
+CYCLE. . . . . . .  C ADDR   2130H   A   
+CYCLE2 . . . . . .  C ADDR   212BH   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+ET0. . . . . . . .  B ADDR   00A8H.1 A   
+ET1. . . . . . . .  B ADDR   00A8H.3 A   
+EXIT . . . . . . .  C ADDR   0013H   R   SEG=PROG_T1
+FLAG . . . . . . .  B ADDR   0000H.0 R   SEG=BITVAR
+FLAG1. . . . . . .  B ADDR   0000H.1 R   SEG=BITVAR
+IP . . . . . . . .  D ADDR   00B8H   A   
+PROG_T0. . . . . .  C SEG    000EH       REL=UNIT
+PROG_T1. . . . . .  C SEG    0018H       REL=UNIT
+PSW. . . . . . . .  D ADDR   00D0H   A   
+START. . . . . . .  C ADDR   2100H   A   
+SV . . . . . . . .  N NUMB   0007H   A   
+SVET . . . . . . .  D ADDR   0000H   R   SEG=VAR1
+TCON . . . . . . .  D ADDR   0088H   A   
+TIMER0 . . . . . .  C ADDR   0000H   R   SEG=PROG_T0
+TIMER1 . . . . . .  C ADDR   0000H   R   SEG=PROG_T1
+TL1. . . . . . . .  D ADDR   008BH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+VAR1 . . . . . . .  D SEG    0001H       REL=UNIT
+VIKL . . . . . . .  C ADDR   000EH   R   SEG=PROG_T1
+WAIT . . . . . . .  C ADDR   2117H   A   
 
 
 REGISTER BANK(S) USED: 0 

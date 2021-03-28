@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/03/2021  20:17:07  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/28/2021  22:25:15  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -17,9 +17,22 @@ LINK MAP OF MODULE:  prim5 (PRIM5)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         VAR1
+                    0009H     0017H                  *** GAP ***
+            BIT     0020H.0   0000H.2   UNIT         BITVAR
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
-            CODE    0000H     210BH     ABSOLUTE     
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     0015H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     1FE5H                  *** GAP ***
+            CODE    200BH     0003H     ABSOLUTE     
+                    200EH     00F2H                  *** GAP ***
+            CODE    2100H     0039H     ABSOLUTE     
+            CODE    2139H     0018H     UNIT         PROG_T1
+            CODE    2151H     000EH     UNIT         PROG_T0
 
 
 
@@ -29,20 +42,96 @@ SYMBOL TABLE OF MODULE:  prim5 (PRIM5)
   ----------------------------------
 
   -------         MODULE        PRIM5
-  C:2100H         SYMBOL        LOAD
-  C:0000H         SYMBOL        START
-  C:0000H         LINE#         65533
-  C:2100H         LINE#         4
-  C:2102H         LINE#         5
-  C:2104H         LINE#         6
-  C:2105H         LINE#         8
-  C:2107H         LINE#         9
-  C:2109H         LINE#         10
+  C:2151H         SEGMENT       PROG_T0
+  C:2139H         SEGMENT       PROG_T1
+  D:0008H         SEGMENT       VAR1
+  B:0020H.0       SEGMENT       BITVAR
+  D:00E0H         SYMBOL        ACC
+  C:2130H         SYMBOL        CYCLE
+  C:212BH         SYMBOL        CYCLE2
+  B:00A8H.7       SYMBOL        EA
+  B:00A8H.1       SYMBOL        ET0
+  B:00A8H.3       SYMBOL        ET1
+  C:214CH         SYMBOL        EXIT
+  B:0020H.0       SYMBOL        FLAG
+  B:0020H.1       SYMBOL        FLAG1
+  D:00B8H         SYMBOL        IP
+  D:00D0H         SYMBOL        PSW
+  C:2100H         SYMBOL        START
+  N:0007H         SYMBOL        SV
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/28/2021  22:25:15  PAGE 2
+
+
+  D:0008H         SYMBOL        SVET
+  D:0088H         SYMBOL        TCON
+  C:2151H         SYMBOL        TIMER0
+  C:2139H         SYMBOL        TIMER1
+  D:008BH         SYMBOL        TL1
+  D:0089H         SYMBOL        TMOD
+  C:2147H         SYMBOL        VIKL
+  C:2117H         SYMBOL        WAIT
+  C:0000H         LINE#         18
+  C:000BH         LINE#         21
+  C:200BH         LINE#         23
+  C:0023H         LINE#         26
+  C:2151H         LINE#         36
+  C:2153H         LINE#         37
+  C:2155H         LINE#         38
+  C:2157H         LINE#         39
+  C:2158H         LINE#         41
+  C:215AH         LINE#         42
+  C:215CH         LINE#         43
+  C:215EH         LINE#         44
+  C:2139H         LINE#         47
+  C:213BH         LINE#         48
+  C:213DH         LINE#         49
+  C:2140H         LINE#         50
+  C:2142H         LINE#         51
+  C:2143H         LINE#         52
+  C:2145H         LINE#         53
+  C:2147H         LINE#         55
+  C:2149H         LINE#         56
+  C:214AH         LINE#         57
+  C:214CH         LINE#         58
+  C:214EH         LINE#         59
+  C:2150H         LINE#         60
+  C:2100H         LINE#         63
+  C:2103H         LINE#         63
+  C:2106H         LINE#         64
+  C:2108H         LINE#         65
+  C:210AH         LINE#         66
+  C:210CH         LINE#         67
+  C:210EH         LINE#         70
+  C:2110H         LINE#         71
+  C:2112H         LINE#         72
+  C:2114H         LINE#         73
+  C:2117H         LINE#         75
+  C:2119H         LINE#         76
+  C:211AH         LINE#         77
+  C:211BH         LINE#         78
+  C:211EH         LINE#         80
+  C:211FH         LINE#         81
+  C:2121H         LINE#         82
+  C:2123H         LINE#         83
+  C:2126H         LINE#         84
+  C:2128H         LINE#         85
+  C:2129H         LINE#         86
+  C:212BH         LINE#         87
+  C:212DH         LINE#         88
+  C:212FH         LINE#         89
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/28/2021  22:25:15  PAGE 3
+
+
+  C:2130H         LINE#         91
+  C:2132H         LINE#         92
+  C:2133H         LINE#         93
+  C:2134H         LINE#         94
+  C:2137H         LINE#         95
   -------         ENDMOD        PRIM5
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 000EH BYTE ( 0%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 006BH BYTE ( 5%) *
 ******************************************************************************
 
-Program Size: data=8.0 xdata=0 code=8459
+Program Size: data=9.2 xdata=0 code=107
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

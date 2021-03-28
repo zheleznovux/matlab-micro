@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PRIM6                                                                03/05/2021 14:59:27 PAGE     1
+A51 MACRO ASSEMBLER  PRIM6                                                                03/11/2021 12:55:45 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.7.0
@@ -20,10 +20,10 @@ LOC  OBJ            LINE     SOURCE
 0012 F9               11                     MOV R1,A
 0013 D0F0             12                     POP B ;восстановление B
 0015 D0E0             13                     POP ACC ;восстановление аккумулятора
-0017 D0D0             14                     POP PSW ;восстановление PSW
+0017 D0D0             14                     POP PSW
 0019 22               15                     RET ;возврат
                       16                     END
-A51 MACRO ASSEMBLER  PRIM6                                                                03/05/2021 14:59:27 PAGE     2
+A51 MACRO ASSEMBLER  PRIM6                                                                03/11/2021 12:55:45 PAGE     2
 
 SYMBOL TABLE LISTING
 ------ ----- -------
