@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/28/2021  22:25:15  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/08/2021  03:12:03  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -25,14 +25,16 @@ LINK MAP OF MODULE:  prim5 (PRIM5)
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     0008H                  *** GAP ***
             CODE    000BH     0003H     ABSOLUTE     
-                    000EH     0015H                  *** GAP ***
-            CODE    0023H     0003H     ABSOLUTE     
-                    0026H     1FE5H                  *** GAP ***
+                    000EH     000DH                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+                    001EH     1FEDH                  *** GAP ***
             CODE    200BH     0003H     ABSOLUTE     
-                    200EH     00F2H                  *** GAP ***
-            CODE    2100H     0039H     ABSOLUTE     
-            CODE    2139H     0018H     UNIT         PROG_T1
-            CODE    2151H     000EH     UNIT         PROG_T0
+                    200EH     000DH                  *** GAP ***
+            CODE    201BH     0003H     ABSOLUTE     
+                    201EH     00E2H                  *** GAP ***
+            CODE    2100H     0049H     ABSOLUTE     
+            CODE    2149H     0016H     UNIT         PROG_T1
+            CODE    215FH     000FH     UNIT         PROG_T0
 
 
 
@@ -42,96 +44,105 @@ SYMBOL TABLE OF MODULE:  prim5 (PRIM5)
   ----------------------------------
 
   -------         MODULE        PRIM5
-  C:2151H         SEGMENT       PROG_T0
-  C:2139H         SEGMENT       PROG_T1
+  C:215FH         SEGMENT       PROG_T0
+  C:2149H         SEGMENT       PROG_T1
   D:0008H         SEGMENT       VAR1
   B:0020H.0       SEGMENT       BITVAR
   D:00E0H         SYMBOL        ACC
-  C:2130H         SYMBOL        CYCLE
-  C:212BH         SYMBOL        CYCLE2
+  C:2140H         SYMBOL        CYCLE
   B:00A8H.7       SYMBOL        EA
   B:00A8H.1       SYMBOL        ET0
   B:00A8H.3       SYMBOL        ET1
-  C:214CH         SYMBOL        EXIT
+  C:215AH         SYMBOL        EXIT
   B:0020H.0       SYMBOL        FLAG
   B:0020H.1       SYMBOL        FLAG1
-  D:00B8H         SYMBOL        IP
+  C:2129H         SYMBOL        POINT_1
+  C:2130H         SYMBOL        POINT_2
+  C:2137H         SYMBOL        POINT_3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2021  03:12:03  PAGE 2
+
+
   D:00D0H         SYMBOL        PSW
+  B:00B8H.1       SYMBOL        PT0
   C:2100H         SYMBOL        START
   N:0007H         SYMBOL        SV
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/28/2021  22:25:15  PAGE 2
-
-
   D:0008H         SYMBOL        SVET
   D:0088H         SYMBOL        TCON
-  C:2151H         SYMBOL        TIMER0
-  C:2139H         SYMBOL        TIMER1
+  C:215FH         SYMBOL        TIMER0
+  C:2149H         SYMBOL        TIMER1
   D:008BH         SYMBOL        TL1
   D:0089H         SYMBOL        TMOD
-  C:2147H         SYMBOL        VIKL
-  C:2117H         SYMBOL        WAIT
+  C:2156H         SYMBOL        VIKL
+  C:2150H         SYMBOL        VKL
+  C:211DH         SYMBOL        WAIT
   C:0000H         LINE#         18
   C:000BH         LINE#         21
   C:200BH         LINE#         23
-  C:0023H         LINE#         26
-  C:2151H         LINE#         36
-  C:2153H         LINE#         37
-  C:2155H         LINE#         38
-  C:2157H         LINE#         39
-  C:2158H         LINE#         41
-  C:215AH         LINE#         42
-  C:215CH         LINE#         43
-  C:215EH         LINE#         44
-  C:2139H         LINE#         47
-  C:213BH         LINE#         48
-  C:213DH         LINE#         49
-  C:2140H         LINE#         50
-  C:2142H         LINE#         51
-  C:2143H         LINE#         52
-  C:2145H         LINE#         53
-  C:2147H         LINE#         55
-  C:2149H         LINE#         56
-  C:214AH         LINE#         57
-  C:214CH         LINE#         58
-  C:214EH         LINE#         59
-  C:2150H         LINE#         60
-  C:2100H         LINE#         63
-  C:2103H         LINE#         63
-  C:2106H         LINE#         64
-  C:2108H         LINE#         65
-  C:210AH         LINE#         66
-  C:210CH         LINE#         67
-  C:210EH         LINE#         70
-  C:2110H         LINE#         71
-  C:2112H         LINE#         72
-  C:2114H         LINE#         73
-  C:2117H         LINE#         75
-  C:2119H         LINE#         76
-  C:211AH         LINE#         77
-  C:211BH         LINE#         78
-  C:211EH         LINE#         80
-  C:211FH         LINE#         81
-  C:2121H         LINE#         82
-  C:2123H         LINE#         83
-  C:2126H         LINE#         84
-  C:2128H         LINE#         85
-  C:2129H         LINE#         86
-  C:212BH         LINE#         87
-  C:212DH         LINE#         88
-  C:212FH         LINE#         89
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/28/2021  22:25:15  PAGE 3
+  C:001BH         LINE#         26
+  C:201BH         LINE#         28
+  C:215FH         LINE#         38
+  C:2161H         LINE#         39
+  C:2163H         LINE#         40
+  C:2165H         LINE#         41
+  C:2166H         LINE#         42
+  C:2167H         LINE#         43
+  C:2169H         LINE#         44
+  C:216BH         LINE#         45
+  C:216DH         LINE#         46
+  C:2149H         LINE#         50
+  C:214BH         LINE#         51
+  C:214DH         LINE#         52
+  C:2150H         LINE#         55
+  C:2152H         LINE#         56
+  C:2154H         LINE#         57
+  C:2156H         LINE#         61
+  C:2158H         LINE#         62
+  C:215AH         LINE#         64
+  C:215CH         LINE#         65
+  C:215EH         LINE#         66
+  C:2100H         LINE#         69
+  C:2103H         LINE#         69
+  C:2106H         LINE#         71
+  C:2108H         LINE#         72
+  C:210AH         LINE#         73
+  C:210CH         LINE#         74
+  C:210EH         LINE#         77
+  C:2110H         LINE#         79
+  C:2112H         LINE#         81
+  C:2114H         LINE#         82
+  C:2116H         LINE#         83
+  C:2118H         LINE#         84
+  C:211AH         LINE#         86
+  C:211DH         LINE#         89
+  C:211FH         LINE#         90
+  C:2120H         LINE#         91
+  C:2121H         LINE#         92
+  C:2124H         LINE#         94
+  C:2127H         LINE#         96
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2021  03:12:03  PAGE 3
 
 
-  C:2130H         LINE#         91
-  C:2132H         LINE#         92
-  C:2133H         LINE#         93
-  C:2134H         LINE#         94
-  C:2137H         LINE#         95
+  C:2128H         LINE#         97
+  C:2129H         LINE#         99
+  C:212CH         LINE#         100
+  C:212EH         LINE#         101
+  C:2130H         LINE#         103
+  C:2133H         LINE#         104
+  C:2135H         LINE#         105
+  C:2137H         LINE#         107
+  C:213AH         LINE#         108
+  C:213CH         LINE#         109
+  C:213EH         LINE#         110
+  C:2140H         LINE#         112
+  C:2142H         LINE#         113
+  C:2143H         LINE#         114
+  C:2144H         LINE#         115
+  C:2147H         LINE#         116
   -------         ENDMOD        PRIM5
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 006BH BYTE ( 5%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 007DH BYTE ( 6%) *
 ******************************************************************************
 
-Program Size: data=9.2 xdata=0 code=107
+Program Size: data=9.2 xdata=0 code=125
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

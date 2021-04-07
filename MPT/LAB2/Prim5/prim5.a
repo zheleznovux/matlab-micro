@@ -1,97 +1,118 @@
-;#include <ADuC812.inc> ;<----------------------------
+;#include <ADuC812.inc> ;<---------------------------- 
 
-SV EQU 7h
-	
-PROG_T0	SEGMENT CODE
-PROG_T1	SEGMENT CODE	
-VAR1	SEGMENT DATA
-BITVAR	SEGMENT BIT	
+SV EQU 7h 
+ 	 
+PROG_T0	SEGMENT CODE 
+PROG_T1	SEGMENT CODE	 
+VAR1	SEGMENT DATA 
+BITVAR	SEGMENT BIT	 
 
-		RSEG VAR1
-		SVET: DS 1
-
-		RSEG BITVAR
-		FLAG: DBIT 1	
-		FLAG1: DBIT 1
-	
-		CSEG AT 0h
-		jmp START
-		
-		CSEG AT 0Bh
-		jmp Timer0
-		CSEG AT 200Bh
-		jmp Timer0
-		
-		CSEG AT 23h
+		RSEG VAR1 
+ 		SVET: DS 1 
+ 
+ 		RSEG BITVAR 
+ 		FLAG: DBIT 1	 
+ 		FLAG1: DBIT 1 
+ 	 
+ 		CSEG AT 0h 
+ 		jmp START 
+ 		 
+ 		CSEG AT 0Bh 
+ 		jmp Timer0  
+ 		CSEG AT 200Bh 
+ 		jmp Timer0 
+ 		 
+ 		CSEG AT 1Bh 
+ 		jmp Timer1 
+		cseg at 201Bh
 		jmp Timer1
+ 
+;nastroika timera 
+setTimer macro V_TMOD,V_TCON 
+ 		mov TMOD,V_TMOD 
+ 		mov TCON,V_TCON 
+ 		endm	 
+ 		 
+;podprogramma obrabotchik prerivaniya ot timera0 
+ 		RSEG PROG_T0 
+Timer0: push PSW 
+ 		push ACC 
+ 		mov A,SVET 
+ 		RR A 
+ 		movx @R1,A 
+ 		mov SVET,A 
+ 		pop ACC 
+ 		pop PSW 
+ 		RETI 
+ 
+;podprogramma obrabotchik prerivaniya ot timera1 		 
+ 		RSEG PROG_T1 
+Timer1:	push PSW ;2 
+ 		push ACC ;2 
+ 		jb flag, VIKL ;2 
+ 		;mov A, SVET ;1 
+ 		;movx @R1, A ;2 
+VKL:	MOV TL1, R2
+ 		setb flag ;1 
+ 		jmp exit ;2 
 
-;nastroika timera
-setTimer macro V_TMOD,V_TCON
-		mov TMOD,V_TMOD
-		mov TCON,V_TCON
-		endm	
-		
-;podprogramma obrabotchik prerivaniya ot timera0
-		RSEG PROG_T0
-Timer0: push PSW
-		push ACC
-		mov A,SVET
-		RR A
-		;movx @R1,A
-		mov SVET,A
-		pop ACC
-		pop PSW
-		RETI
-		
-		RSEG PROG_T1
-Timer1:	push PSW ;2
-		push ACC ;2
-		jnb flag, vikl ;2
-		mov A,SVET ;1
-		movx @R1,A ;2
-		clr flag ;1
-		jmp exit ;2
-vikl:	
-		mov A,#0h ;1
-		movx @R1,A ;2
-		setb flag ;1
-exit:	pop ACC ;2
-		pop PSW;2
-		RETI ;2
-		
-		CSEG AT 2100h
-START:	setTimer #00100001b, #01000010h
-		SETB EA
-		SETB ET0
-		SETB ET1
-		SETB IP.1;		SETB PT0
-		
-		;MOV DPP,#8h
-		MOV R1, #SV
-		MOV R0, #0h
-		MOV R2, #164
-		MOV SVET, #00000001b
+VIKL:	;mov A,#0h ;1 
+ 		;movx @R1,A ;2 
+		MOV TL1, R3
+ 		clr flag ;1 
 
-WAIT:	mov A, #11111011b
-		movx @R0, A
-		movx A, @R0
-		cjne A, #01111011b, wait
+exit:	pop ACC ;2 
+ 		pop PSW;2 
+ 		RETI ;2 
+ 		 
+ 		CSEG AT 2100h 
+START:	setTimer #00100001h, #01010000h
+        
+ 		SETB EA 
+ 		SETB ET0 
+ 		SETB ET1 
+		SETB PT0 
+ 		 
+; 		MOV DPP,#8h 
+ 		MOV R1, #SV 
+
+ 		MOV R0, #0h 
+
+ 		MOV R2, #155
+		MOV R3, #0
+		MOV R4, #0
+		MOV TL1, R2
+
+ 		MOV SVET, #00000001b
+		;SETB flag 
+ 
+WAIT:	mov A, #11111011b 
+ 		movx @R0, A 
+ 		movx A, @R0
+ 		cjne A, #01111011b, wait 
+ 		
+		MOV SVET, #00000001b 
 		
-		MOV A, R2
-		ADDC A, #18
-		mov FLAG1, C
-		JB FLAG1, cycle2
-		MOV TL1, A
-		MOV R2, A
-		JMP CYCLE
-CYCLE2:	MOV R2, #164
-		MOV TL1, A
-		CLR C
+		INC R4
+		MOV A, R4
+		
+POINT_1:CJNE A, #1, POINT_2;
+		MOV R2, #105;
+		MOV R3, #50;
+				
+POINT_2:CJNE A, #2, POINT_3;
+		MOV R2, #55;
+		MOV R3, #100;
 
-CYCLE:	mov A, #11111011b
-		movx @R0, A
-		movx A, @R0
-		cjne A, #01111011b, cycle
-		jmp wait
+POINT_3:CJNE A, #3, CYCLE;
+		MOV R2, #0;
+		MOV R3, #155;
+		MOV R4, #0;
 
-		END
+CYCLE:	mov A, #11111011b 
+ 		movx @R0, A 
+ 		movx A, @R0 
+ 		cjne A, #01111011b, cycle 
+ 		jmp wait 
+  
+		END 
